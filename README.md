@@ -1,2 +1,2 @@
-# Hacernk-problems
-Rank problems solution available here 
+# HackerRank problems
+HackerRank problems solution available here 
