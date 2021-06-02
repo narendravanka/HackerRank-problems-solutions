@@ -1,0 +1,80 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.function.*;
+import java.util.regex.*;
+import java.util.stream.*;
+import java.util.Arrays;
+import java.util.Collections;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
+
+class Result {
+
+    /*
+     * Complete the 'birthdayCakeCandles' function below.
+     *
+     * The function is expected to return an INTEGER.
+     * The function accepts INTEGER_ARRAY candles as parameter.
+     */
+
+    public static int birthdayCakeCandles(List<Integer> candles) {
+    // Write your code here
+        int a[] = candles.stream().mapToInt(Integer::intValue).toArray();
+        int total=1;
+        int n= a.length;
+        int temp;
+        //  for (int i = 0; i < n; i++) {     
+        //     for (int j = i+1; j < n; j++) {     
+        //        if(a[i] < a[j]) {    
+        //            temp = a[i];    
+        //            a[i] = a[j];    
+        //            a[j] = temp;    
+        //        }     
+        //     }     
+        // }    
+        // System.out.println(Arrays.toString(a));
+        //  Arrays.sort(a, Collections.reverseOrder();
+        
+        Arrays.sort(a);
+        int m = a[n-1];
+        for(int i=n-2 ; i>=0 ; i--)
+        {
+            if( m == a[i] )
+            {
+                total++;
+            
+            }
+            else
+                break;
+            
+        }
+       
+        return total;
+    }
+
+}
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        int candlesCount = Integer.parseInt(bufferedReader.readLine().trim());
+
+        List<Integer> candles = Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
+            .map(Integer::parseInt)
+            .collect(toList());
+
+        int result = Result.birthdayCakeCandles(candles);
+
+        bufferedWriter.write(String.valueOf(result));
+        bufferedWriter.newLine();
+
+        bufferedReader.close();
+        bufferedWriter.close();
+    }
+}
